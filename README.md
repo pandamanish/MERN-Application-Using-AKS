@@ -143,13 +143,3 @@ kubectl port-forward service/profileservice-service 5001:5001
 
 Access `http://localhost:5000` and `http://localhost:5001` in your browser to test the backend services.
 
----
-
-## **9. Submission**
-
-Submit the GitHub repository link as per the assignment guidelines.
-
----
-
-### **Congratulations! Your MERN application is now deployed on AKS.**
-
