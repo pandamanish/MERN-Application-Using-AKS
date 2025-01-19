@@ -30,16 +30,19 @@ Before starting, ensure you have:
 ## **3. Set Up Azure Resources**
 
 ### **3.1 Create a Resource Group**
+
 ```bash
 az group create --name MERNResourceGroup --location eastus
 ```
 
 ### **3.2 Create an Azure Container Registry (ACR)**
+
 ```bash
 az acr create --resource-group MERNResourceGroup --name MERNContainerRegistry --sku Basic
 ```
 
 ### **3.3 Login to ACR**
+
 ```bash
 az acr login --name MERNContainerRegistry
 ```
@@ -68,6 +71,7 @@ To build and push images to ACR, use GitHub Actions:
 ### **4.3 Push Workflow to GitHub**
 
 Commit and push the workflow file:
+
 ```bash
 git add .github/workflows/build-and-push.yml
 git commit -m "Add GitHub Actions workflow for ACR"
@@ -83,16 +87,19 @@ Check the Actions tab in GitHub to confirm the workflow ran successfully and pus
 ## **5. Deploy AKS Cluster**
 
 ### **5.1 Create an AKS Cluster**
+
 ```bash
 az aks create --resource-group MERNResourceGroup --name MERNCluster --node-count 2 --generate-ssh-keys
 ```
 
 ### **5.2 Attach ACR to AKS**
+
 ```bash
 az aks update --name MERNCluster --resource-group MERNResourceGroup --attach-acr MERNContainerRegistry
 ```
 
 ### **5.3 Connect to AKS**
+
 ```bash
 az aks get-credentials --resource-group MERNResourceGroup --name MERNCluster
 ```
@@ -102,15 +109,29 @@ az aks get-credentials --resource-group MERNResourceGroup --name MERNCluster
 ## **6. Create Kubernetes Deployment Files**
 
 ### **6.1 Frontend Deployment**
+
 Create `frontend-deployment.yaml`.
 
+![Frontend Docker Build](./frontend.docker.png)
+
 ### **6.2 HelloService Deployment**
+
 Create `helloservice-deployment.yaml`.
 
+![HelloService Docker Build](./hello_service_docker.png)
+
+![HelloService Kubernetes Deployment](./hello_kube.png)
+
 ### **6.3 ProfileService Deployment**
+
 Create `profileservice-deployment.yaml`.
 
+![ProfileService Docker Build](./Capture.PNG)
+
+![ProfileService Kubernetes Deployment](./profile_kube.png)
+
 ### **6.4 Apply Deployments**
+
 ```bash
 kubectl apply -f frontend-deployment.yaml
 kubectl apply -f helloservice-deployment.yaml
@@ -118,6 +139,7 @@ kubectl apply -f profileservice-deployment.yaml
 ```
 
 ### **6.5 Verify Deployments**
+
 ```bash
 kubectl get all
 ```
@@ -127,15 +149,19 @@ kubectl get all
 ## **7. Test the Deployment**
 
 ### **7.1 Retrieve Frontend Service IP**
+
 ```bash
 kubectl get service frontend-service
 ```
 
 ### **7.2 Access the Application**
+
 Open the external IP in your browser and verify the application is running.
 
 ### **7.3 Test Individual Backend Services**
+
 Use port-forwarding to test:
+
 ```bash
 kubectl port-forward service/helloservice-service 5000:5000
 kubectl port-forward service/profileservice-service 5001:5001
