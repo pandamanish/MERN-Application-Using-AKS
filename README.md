@@ -112,23 +112,23 @@ az aks get-credentials --resource-group MERNResourceGroup --name MERNCluster
 
 Create `frontend-deployment.yaml`.
 
-![Frontend Docker Build](./frontend.docker.png)
+![Frontend Docker Build](images/frontend.docker.png)
 
 ### **6.2 HelloService Deployment**
 
 Create `helloservice-deployment.yaml`.
 
-![HelloService Docker Build](./hello_service_docker.png)
+![HelloService Docker Build](images/hello_service_docker.png)
 
-![HelloService Kubernetes Deployment](./hello_kube.png)
+![HelloService Kubernetes Deployment](images/hello_kube.png)
 
 ### **6.3 ProfileService Deployment**
 
 Create `profileservice-deployment.yaml`.
 
-![ProfileService Docker Build](./Capture.PNG)
+![ProfileService Docker Build](images/Capture.PNG)
 
-![ProfileService Kubernetes Deployment](./profile_kube.png)
+![ProfileService Kubernetes Deployment](images/profile_kube.png)
 
 ### **6.4 Apply Deployments**
 
